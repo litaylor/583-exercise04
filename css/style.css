@@ -5,3 +5,7 @@ section {
 .card {
   margin-bottom: 15px;
 }
+
+[v-cloak] {
+  display: none;
+}

@@ -16,14 +16,14 @@
         <section>
           <div class="card" v-for="card in cards">
             <div class="card-header">
-              <p class="card-header-title">{{card.title}}</p>
+              <p class="card-header-title" v-cloak>{{card.title}}</p>
             </div>
             <div class="card-content">
-              <p v-if="!(editingStatus===true && currentCard===cards.indexOf(card))">{{card.content}}</p>
+              <p v-if="!(editingStatus===true && currentCard===cards.indexOf(card))" v-cloak>{{card.content}}</p>
               <textarea class="textarea" v-model="updateContent" v-if="editingStatus===true && currentCard===cards.indexOf(card)"></textarea>
             </div>
             <footer class="card-footer" v-show="editingStatus===false || currentCard===cards.indexOf(card)">
-              <a class="card-footer-item" v-on:click="editing(card)">{{editMessage}}</a>
+              <a class="card-footer-item" v-on:click="editing(card)" v-cloak>{{editMessage}}</a>
               <a class="card-footer-item" v-on:click="remove(card)" v-if="!(editingStatus===true && currentCard===cards.indexOf(card))">Done</a>
             </footer>
           </div>
