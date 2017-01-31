@@ -5,6 +5,10 @@
 new Vue({
   el: '#app',
   data: {
+    editMessage: "Edit",
+    editingStatus: false,
+    updateContent: '',
+    currentCard: 0,
     titleInput:'',
     contentInput:'',
     cards: [
@@ -19,6 +23,22 @@ new Vue({
       });
       this.titleInput='';
       this.contentInput='';
+    },
+    editing: function(card) {
+      var cardIndex = this.cards.indexOf(card);
+      this.currentCard=cardIndex;
+      if (!this.editingStatus) {
+        this.updateContent = this.cards[cardIndex].content;
+        this.editingStatus = true;
+        this.editMessage = "Update"
+      }
+      else {
+        this.cards[cardIndex].content = this.updateContent;
+        this.editingStatus = false;
+        this.editMessage = "Edit"
+      }
+
+
     },
     cancel: function() {
       this.titleInput='';

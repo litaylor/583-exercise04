@@ -19,11 +19,12 @@
               <p class="card-header-title">{{card.title}}</p>
             </div>
             <div class="card-content">
-              <p>{{card.content}}</p>
+              <p v-if="!(editingStatus===true && currentCard===cards.indexOf(card))">{{card.content}}</p>
+              <textarea class="textarea" v-model="updateContent" v-if="editingStatus===true && currentCard===cards.indexOf(card)"></textarea>
             </div>
-            <footer class="card-footer">
-              <a class="card-footer-item">Edit</a>
-              <a class="card-footer-item" v-on:click="remove(card)">Done</a>
+            <footer class="card-footer" v-show="editingStatus===false || currentCard===cards.indexOf(card)">
+              <a class="card-footer-item" v-on:click="editing(card)">{{editMessage}}</a>
+              <a class="card-footer-item" v-on:click="remove(card)" v-if="!(editingStatus===true && currentCard===cards.indexOf(card))">Done</a>
             </footer>
           </div>
         </section>
